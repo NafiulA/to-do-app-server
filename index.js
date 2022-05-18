@@ -44,6 +44,13 @@ async function run() {
             };
             const result = await taskCollection.updateOne(query, updateDoc);
             res.send(result);
+        });
+
+        app.delete("/tasks", async (req, res) => {
+            const id = req.query.id;
+            const query = { _id: ObjectId(id) };
+            const result = await taskCollection.deleteOne(query);
+            res.send(result);
         })
     }
     finally {
